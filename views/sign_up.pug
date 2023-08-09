@@ -1,0 +1,14 @@
+extends layout 
+
+block content 
+  form(class='sign-up-form' action='' method='POST')
+    input(type='text' class='form-input' placeholder='Full Name' name='fullname')
+    input(type='text' class='form-input' placeholder='Username' name='username')
+    input(type='password' class='form-input' placeholder='Password' name='pass1')
+    input(type='password' class='form-input' placeholder='Confirm Password' name='pass2')
+    button(type='submit' class='submit-form') Sign Up
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
