@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+  h1= title 
+
+  p Creating message as #{user.fullname}
+  form(action="" method="POST")
+    input(type='text' placeholder='Title...' name='title')
+    textarea(name="message" cols="30" rows="10" placeholder="Message...")
+    button Create Message
+
+  if errors 
+    ul 
+      for err in errors 
+        li!= err.msg

@@ -4,9 +4,22 @@ block content
   h1= title
   p Welcome to #{title}
 
+  if messages 
+    div 
+      for message in messages 
+        div 
+          h3 #{message.title} 
+          p #{message.message}
+          if user && user.membership_status !== "member"
+            p #{message.date}
+            - console.log(message.user)
+            p #{message.user.fullname}
+
   if (user)
     h1 Welcome back!
-
+    
+    a(href='/create_message') Create Message
+    
     a(href='/log-out') Log Out
   else
     a(href='/sign-up') Sign Up

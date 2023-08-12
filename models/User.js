@@ -11,4 +11,4 @@ const UserSchema = new Schema({
   membership_status: { type: String, required: true, enum: membershipStatus },
 });
 
-module.exports = mongoose.model("Member", UserSchema);
+module.exports = mongoose.model("User", UserSchema);

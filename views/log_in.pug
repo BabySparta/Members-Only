@@ -5,3 +5,8 @@ block content
     input(name="username" placeholder="Username" type="text") 
     input(name="password" type="password" placeholder='Password') 
     button Log In
+  
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
