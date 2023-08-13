@@ -1,11 +1,18 @@
 extends layout
 
 block content
-  h1= title
+  div(class='header')
+    h1.title= title
 
+    div.container
+      if user 
+        p.bodyText Signed in as: #{user.fullname}
+      else
+        a(href='/sign-up' class='bodyText link') Sign Up
+        a(href='/log-in' class='bodyText link') Log In
 
   if messages 
-    div 
+    div.messages 
       for message in messages 
         div 
           h3 #{message.title} 
@@ -18,17 +25,9 @@ block content
               button(type="submit") Delete
 
   if (user)
-    h1 Welcome back!
-
-    p Membership Status: #{user.membership_status}
-
     if (user.membership_status === 'member')
       a(href='/join_club') Join The Club!
     
     a(href='/create_message') Create Message
     
     a(href='/log-out') Log Out
-  else
-    a(href='/sign-up') Sign Up
-    hr
-    a(href='/log-in') Log In

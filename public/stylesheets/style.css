@@ -1,8 +1,75 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+:root {
+  --midieval: "Yatra One", Helvetica, Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  color: white;
+  text-decoration: none;
+}
+
+body, html {
+  width: 100vw;
+  max-width: 100vw;
+  min-height: 100vh;
 }
 
 a {
-  color: #00B7FF;
+  color: white;
+}
+
+/* Layout */
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #a000eb, #ffcc00, #a000eb);
+}
+
+.contentWrap {
+  background-color: black;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.bodyText {
+  font-size: 1.3rem;
+  font-family: var(--midieval);
+}
+
+.title {
+  font-family: var(--midieval);
+  font-size: 2rem;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.link:hover {
+  text-decoration: underline 2px solid white;
+  text-underline-offset: 4px;
+}
+
+/* Home Page */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 10px;
+  box-sizing: border-box;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  max-height: 400px;
+  overflow-y: scroll;
 }
