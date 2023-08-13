@@ -1,0 +1,14 @@
+extends layout 
+
+block content
+  h1= title 
+
+  form(action="", method="post") 
+    label(for="secretpassword") Enter the secret password to join
+    input(type="password", name="secretpassword")
+    button Join Club
+
+  if errors 
+    ul 
+      for err in errors 
+        li!= err.msg

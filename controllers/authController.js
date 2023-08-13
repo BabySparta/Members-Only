@@ -40,7 +40,7 @@ exports.sign_up_post = [
         fullname: req.body.fullname,
         username: req.body.username,
         password: hashedPassword,
-        membership_status: "member"
+        membership_status: "member",
       });
       const result = await user.save();
       res.redirect("/");
@@ -49,14 +49,14 @@ exports.sign_up_post = [
 ];
 
 exports.log_in_get = (req, res) => {
-  if (res.locals.currentUser) return res.redirect('/');
-  res.render('log_in', { title: "Log In" })
-}
+  if (res.locals.currentUser) return res.redirect("/");
+  res.render("log_in", { title: "Log In" });
+};
 
 exports.log_in_post = passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/log-in",
-})
+});
 
 exports.log_out = (req, res, next) => {
   req.logout(function (err) {
@@ -66,3 +66,40 @@ exports.log_out = (req, res, next) => {
     res.redirect("/");
   });
 };
+
+exports.join_club_get = asyncHandler(async (req, res) => {
+  res.render("join_club", { title: "Join The Club!" });
+});
+
+exports.join_club_post = [
+  body("secretpassword")
+    .trim()
+    .custom((value, { req }) => {
+      if (value === process.env.SECRET_PASSWORD) {
+        return true;
+      }
+
+      throw new Error("That is not the secret password");
+    }),
+  asyncHandler(async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      res.render("join_club", {
+        title: "Join The Club!",
+        errors: errors.array(),
+      });
+      return;
+    }
+    const user = res.locals.currentUser;
+
+    try {
+      user.membership_status = "club_member";
+      await user.save();
+      res.redirect("/");
+    } catch (error) {
+      console.error("Error updating membership status:", error);
+      res.status(500).send("An error occurred");
+    }
+  }),
+];

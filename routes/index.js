@@ -23,4 +23,11 @@ router.get('/log-out', authController.log_out);
 router.get('/create_message', messageController.create_message_get);
 router.post('/create_message', messageController.create_message_post);
 
+// Delete Message
+router.post('/delete_message/:id', messageController.delete_message_post);
+
+// Join Club
+router.get('/join_club', authController.join_club_get);
+router.post('/join_club', authController.join_club_post);
+
 module.exports = router;

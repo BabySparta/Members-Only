@@ -27,9 +27,15 @@ exports.create_message_post = [
       user: res.locals.currentUser,
       title: req.body.title,
       message: req.body.message,
-      fulldate: Date.now
-    })
+      fulldate: Date.now,
+    });
     const result = await message.save();
     res.redirect("/");
   }),
 ];
+
+exports.delete_message_post = asyncHandler(async (req, res) => {
+  const messageId = req.params.id;
+  await Message.findByIdAndDelete(messageId);
+  res.redirect("/");
+});

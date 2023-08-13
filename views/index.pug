@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+
 
   if messages 
     div 
@@ -12,11 +12,18 @@ block content
           p #{message.message}
           if user && user.membership_status !== "member"
             p #{message.date}
-            - console.log(message.user)
             p #{message.user.fullname}
+          if user && user.membership_status === "admin"
+            form(action=`/delete_message/${message._id}`, method="post")
+              button(type="submit") Delete
 
   if (user)
     h1 Welcome back!
+
+    p Membership Status: #{user.membership_status}
+
+    if (user.membership_status === 'member')
+      a(href='/join_club') Join The Club!
     
     a(href='/create_message') Create Message
     
