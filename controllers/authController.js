@@ -43,7 +43,10 @@ exports.sign_up_post = [
         membership_status: "member",
       });
       const result = await user.save();
-      res.redirect("/");
+      passport.authenticate("local", {
+        successRedirect: "/",
+        failureRedirect: "/log-in",
+      })(req, res, next);
     });
   }),
 ];

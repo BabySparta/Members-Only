@@ -10,7 +10,7 @@ const MessageSchema = new Schema({
 });
 
 MessageSchema.virtual("date").get(function() {
-  return DateTime.fromJSDate(this.fullDate).toFormat("yyyy-MM-dd, HH:mm");
+  return DateTime.fromJSDate(this.fullDate).toFormat("HH:mm LLL dd, yyyy");
 })
 
 module.exports = mongoose.model("Message", MessageSchema);

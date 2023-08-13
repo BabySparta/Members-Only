@@ -14,20 +14,23 @@ block content
   if messages 
     div.messages 
       for message in messages 
-        div 
+        div.message
           h3 #{message.title} 
           p #{message.message}
-          if user && user.membership_status !== "member"
-            p #{message.date}
-            p #{message.user.fullname}
-          if user && user.membership_status === "admin"
-            form(action=`/delete_message/${message._id}`, method="post")
-              button(type="submit") Delete
+          div.messageInfo
+            if user && user.membership_status !== "member"
+              p.subTxt #{message.user.fullname}
+              p.subTxt #{message.date}
+            if user && user.membership_status === "admin"
+              form(action=`/delete_message/${message._id}`, method="post")
+                button(type="submit" class="delete") 
+                  span(class="material-symbols-outlined") delete
 
   if (user)
-    if (user.membership_status === 'member')
-      a(href='/join_club') Join The Club!
-    
-    a(href='/create_message') Create Message
-    
-    a(href='/log-out') Log Out
+    div.footer
+      if (user.membership_status === 'member')
+        a(href='/join_club' class="bodyText link") Join The Club!
+
+      a(href='/create_message' class="bodyText link") Create Message
+
+      a(href='/log-out' class="bodyText link logout") Log Out
