@@ -1,15 +1,14 @@
 extends layout 
 
 block content 
-  h1= title 
+  h1.title= title 
 
-  p Creating message as #{user.fullname}
-  form(action="" method="POST")
-    input(type='text' placeholder='Title...' name='title')
-    textarea(name="message" cols="30" rows="10" placeholder="Message...")
-    button Create Message
-
-  if errors 
-    ul 
-      for err in errors 
-        li!= err.msg
+  p.bodyText Creating message as #{user.fullname}
+  form(action="" method="POST" class='form')
+    input(type='text' placeholder='Title...' name='title' class='formInput')
+    textarea(name="message" cols="30" rows="3" placeholder="Message..." maxlength='200' class='formInput')
+    if errors 
+      div.subcontainer
+        for err in errors 
+          p.errorText!= err.msg
+    button.submit Create Message

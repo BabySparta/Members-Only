@@ -1,12 +1,13 @@
 extends layout
 
 block content
-  form(action="" method="POST")
-    input(name="username" placeholder="Username" type="text") 
-    input(name="password" type="password" placeholder='Password') 
-    button Log In
-  
-  if errors
-    ul
-      for error in errors
-        li!= error.msg
+  h1.title= title
+
+  form(action="" method="POST" class='form')
+    input(name="username" placeholder="Username" type="text" class='formInput') 
+    input(name="password" type="password" placeholder='Password' class='formInput') 
+    if errors 
+      div.subcontainer
+        for err in errors 
+          p.errorText!= err.msg
+    button.submit Log In

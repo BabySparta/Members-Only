@@ -1,14 +1,15 @@
 extends layout 
 
 block content 
-  form(class='sign-up-form' action='' method='POST')
-    input(type='text' class='form-input' placeholder='Full Name' name='fullname')
-    input(type='text' class='form-input' placeholder='Username' name='username')
-    input(type='password' class='form-input' placeholder='Password' name='pass1')
-    input(type='password' class='form-input' placeholder='Confirm Password' name='pass2')
-    button(type='submit' class='submit-form') Sign Up
-
-  if errors
-    ul
-      for error in errors
-        li!= error.msg
+  h1.title= title
+  
+  form(class='form' action='' method='POST')
+    input(type='text' class='form-input' placeholder='Full Name' name='fullname' class='formInput')
+    input(type='text' class='form-input' placeholder='Username' name='username' class='formInput')
+    input(type='password' class='form-input' placeholder='Password' name='pass1' class='formInput')
+    input(type='password' class='form-input' placeholder='Confirm Password' name='pass2' class='formInput')
+    if errors 
+      div.subcontainer
+        for err in errors 
+          p.errorText!= err.msg
+    button(type='submit' class='submit') Sign Up

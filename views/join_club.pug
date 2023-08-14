@@ -1,14 +1,13 @@
 extends layout 
 
 block content
-  h1= title 
+  h1.title= title 
 
-  form(action="", method="post") 
-    label(for="secretpassword") Enter the secret password to join
-    input(type="password", name="secretpassword")
-    button Join Club
-
-  if errors 
-    ul 
-      for err in errors 
-        li!= err.msg
+  form(action="", method="post" class='form')
+    div.inputWrap
+      label(for="secretpassword" class='bodyText') Enter the secret password:
+      input(type="password", name="secretpassword" class="formInput")
+      if errors 
+        for err in errors 
+          p.errorText!= err.msg
+    button.submit Join Club!

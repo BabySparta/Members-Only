@@ -6,7 +6,10 @@ block content
 
     div.container
       if user 
-        p.bodyText Signed in as: #{user.fullname}
+        div.subcontainer
+          p.bodyText #{user.fullname}
+          - const memberStatus = user.membership_status.split('_').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+          p.bodySubtext #{memberStatus}
       else
         a(href='/sign-up' class='bodyText link') Sign Up
         a(href='/log-in' class='bodyText link') Log In
